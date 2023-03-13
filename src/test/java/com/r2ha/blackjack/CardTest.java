@@ -14,7 +14,7 @@ class CardTest {
     public void withDisplayTenAsString() throws Exception {
         Card card = new Card(DUMMY_SUIT, DUMMY_RANK);
 
-        assertThat(card.display())
+        assertThat(ConsoleCard.display(card))
                 .isEqualTo("[31m┌─────────┐[1B[11D│10       │[1B[11D│         │[1B[11D│    ♥    │[1B[11D│         │[1B[11D│       10│[1B[11D└─────────┘");
     }
 
@@ -22,7 +22,7 @@ class CardTest {
     public void withDisplayNonTenAsString() throws Exception {
         Card card = new Card(DUMMY_SUIT, Rank.SEVEN);
 
-        assertThat(card.display())
+        assertThat(ConsoleCard.display(card))
                 .isEqualTo("[31m┌─────────┐[1B[11D│7        │[1B[11D│         │[1B[11D│    ♥    │[1B[11D│         │[1B[11D│        7│[1B[11D└─────────┘");
     }
 
@@ -60,9 +60,9 @@ class CardTest {
         String ansiRedString = ansi().fgRed().toString();
 
         // then we expect a red color ansi sequence
-        assertThat(heartsCard.display())
+        assertThat(ConsoleCard.display(heartsCard))
                 .contains(ansiRedString);
-        assertThat(diamondsCard.display())
+        assertThat(ConsoleCard.display(diamondsCard))
                 .contains(ansiRedString);
     }
 
