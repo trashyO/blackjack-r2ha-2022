@@ -11,6 +11,22 @@ class CardTest {
     private static final Rank DUMMY_RANK = Rank.TEN;
 
     @Test
+    public void withDisplayTenAsString() throws Exception {
+        Card card = new Card(DUMMY_SUIT, DUMMY_RANK);
+
+        assertThat(card.display())
+                .isEqualTo("[31m┌─────────┐[1B[11D│10       │[1B[11D│         │[1B[11D│    ♥    │[1B[11D│         │[1B[11D│       10│[1B[11D└─────────┘");
+    }
+
+    @Test
+    public void withDisplayNonTenAsString() throws Exception {
+        Card card = new Card(DUMMY_SUIT, Rank.SEVEN);
+
+        assertThat(card.display())
+                .isEqualTo("[31m┌─────────┐[1B[11D│7        │[1B[11D│         │[1B[11D│    ♥    │[1B[11D│         │[1B[11D│        7│[1B[11D└─────────┘");
+    }
+
+    @Test
     public void withNumberCardHasNumericValueOfTheNumber() throws Exception {
         Card card = new Card(DUMMY_SUIT, Rank.SEVEN);
 
