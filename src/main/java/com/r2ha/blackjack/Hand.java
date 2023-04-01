@@ -3,8 +3,6 @@ package com.r2ha.blackjack;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.fusesource.jansi.Ansi.ansi;
-
 public class Hand {
     private final List<Card> cards = new ArrayList<>();
 
@@ -35,7 +33,7 @@ public class Hand {
     }
 
     String displayFaceUpCard() {
-        return ConsoleCard.display(ConsoleCard.dealerFaceUpCard(this));
+        return ConsoleCard.display(ConsoleHand.dealerFaceUpCard(this));
     }
 
     boolean dealerMustDrawCard() {
@@ -55,8 +53,8 @@ public class Hand {
         return hand.value() < value();
     }
 
-    String displayValue() {
-        return String.valueOf(value());
+    static String displayValue(Hand hand) {
+        return String.valueOf(hand.value());
     }
 
     public void drawFrom(Deck deck) {
