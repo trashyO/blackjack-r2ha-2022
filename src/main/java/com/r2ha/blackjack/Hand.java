@@ -13,7 +13,7 @@ public class Hand {
     public Hand() {
     }
 
-    private int value() {
+    public int value() {
         int handValue = cards
                 .stream()
                 .mapToInt(Card::rankValue)
@@ -51,10 +51,6 @@ public class Hand {
 
     boolean beats(Hand hand) {
         return hand.value() < value();
-    }
-
-    static String displayValue(Hand hand) {
-        return String.valueOf(hand.value());
     }
 
     public void drawFrom(Deck deck) {
