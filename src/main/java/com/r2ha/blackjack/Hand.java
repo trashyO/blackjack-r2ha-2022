@@ -2,7 +2,6 @@ package com.r2ha.blackjack;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.fusesource.jansi.Ansi.ansi;
 
@@ -10,7 +9,7 @@ public class Hand {
     private final List<Card> cards = new ArrayList<>();
 
     public Hand(List<Card> cards) {
-        this.cards.addAll(cards);
+        cards().addAll(cards);
     }
 
     public Hand() {
@@ -36,23 +35,13 @@ public class Hand {
     }
 
     String displayFaceUpCard() {
-        return ConsoleCard.display(cards.get(0));
+        return ConsoleCard.display(ConsoleCard.dealerFaceUpCard(this));
     }
 
     boolean dealerMustDrawCard() {
         return value() <= 16;
     }
 
-    void display() {
-        System.out.println(cards.stream()
-                                .map(ConsoleCard::display)
-                                .collect(Collectors.joining(
-                                        ansi().cursorUp(6).cursorRight(1).toString())));
-    }
-
-    public void drawFrom(Deck deck) {
-        cards.add(deck.draw());
-    }
 
     boolean isBusted() {
         return value() > 21;
@@ -70,7 +59,15 @@ public class Hand {
         return String.valueOf(value());
     }
 
+    public void drawFrom(Deck deck) {
+        cards.add(deck.draw());
+    }
+
     public boolean valueEquals(int target) {
         return value() == target;
+    }
+
+    public List<Card> cards() {
+        return this.cards;
     }
 }
