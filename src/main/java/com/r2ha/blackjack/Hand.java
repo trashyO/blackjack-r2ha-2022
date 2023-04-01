@@ -7,7 +7,7 @@ public class Hand {
     private final List<Card> cards = new ArrayList<>();
 
     public Hand(List<Card> cards) {
-        cards().addAll(cards);
+        this.cards.addAll(cards);
     }
 
     public Hand() {
@@ -62,6 +62,6 @@ public class Hand {
     }
 
     public List<Card> cards() {
-        return this.cards;
+        return List.copyOf(this.cards);
     }
 }
